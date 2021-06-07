@@ -1,15 +1,19 @@
 /**
  * WordPress dependencies
  */
-import { __experimentalUnitControl as UnitControl } from '@wordpress/components';
+import {
+	__experimentalUnitControl as UnitControl,
+	__experimentalUseCustomUnits as useCustomUnits,
+} from '@wordpress/components';
 import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
 /**
  * Internal dependencies
  */
-import { CSS_UNITS, parseUnit } from './border';
+import { parseUnit } from './border';
 import { cleanEmptyObject } from './utils';
+import useSetting from '../components/use-setting';
 
 const MIN_BORDER_WIDTH = 0;
 
@@ -50,6 +54,10 @@ export const BorderWidthEdit = ( props ) => {
 		setAttributes( { style: newStyle } );
 	};
 
+	const units = useCustomUnits( {
+		availableUnits: useSetting( 'layout.units' ) || [ 'px', 'em', 'rem' ],
+	} );
+
 	return (
 		<UnitControl
 			value={ style?.border?.width }
@@ -58,7 +66,7 @@ export const BorderWidthEdit = ( props ) => {
 			onChange={ onChange }
 			onUnitChange={ onUnitChange }
 			step={ step }
-			units={ CSS_UNITS }
+			units={ units }
 		/>
 	);
 };
