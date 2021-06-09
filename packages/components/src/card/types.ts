@@ -13,6 +13,15 @@ export type SizeOptions = 'xSmall' | 'small' | 'medium' | 'large';
 
 export type Props = SurfaceProps & {
 	/**
+	 * Size of the elevation shadow, based on the Style system's elevation system.
+	 * Elevating a `Card` can be done by adjusting the `elevation` prop. This may
+	 * be helpful in highlighting certain content. For more information, check out
+	 * `Elevation`.
+	 *
+	 * @default 2
+	 */
+	elevation?: number;
+	/**
 	 * Renders without a border.
 	 *
 	 * @default false
@@ -34,6 +43,7 @@ export type Props = SurfaceProps & {
 	 * Renders with elevation styles (box shadow).
 	 *
 	 * @default false
+	 * @deprecated
 	 */
 	isElevated?: boolean;
 };
